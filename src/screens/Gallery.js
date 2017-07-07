@@ -5,7 +5,7 @@ import axios from 'axios';
 import * as data from '../redux/actions/dataActions.js';
 import * as page from '../redux/actions/pageActions.js';
 import ElementGallery from '../components/ElementGallery.js';
-// import ListGallery from '../components/ListGallery.js';
+import MoreBtn from '../components/MoreBtn.js';
 
 
 class Gallery extends React.Component {
@@ -38,6 +38,7 @@ class Gallery extends React.Component {
         <View style={style.content}>
             {this.list}
         </View>
+        <MoreBtn />
         <Button  onPress={() => this.props.navigation.navigate('Image', { user: 'Lucy' })} title="Chat with Lucy" />
       </ScrollView>
     );
