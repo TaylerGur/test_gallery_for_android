@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Button} from 'react-native';
+import { StyleSheet, Button, View} from 'react-native';
 import { connect } from 'react-redux';
 import * as data from '../redux/actions/dataActions';
 import * as page from '../redux/actions/pageActions';
@@ -29,23 +29,25 @@ class MoreBtn extends Component {
     render() {
       // console.log(this.props);
   	return (
-    	<Button style={style.btn} title="more images..." onPress={() => this.addMoreImage()} />
+      <View style={this.props.isLoad ? {display:'none'} : style.btn }>
+    	   <Button title="more images..." color='black' onPress={() => this.addMoreImage()} />
+      </View>
     );
   }
 }
 const style = StyleSheet.create({
     btn:{
-      display: 'block',
-      margin: 20,
-      padding: 5,
-      fontSize: 18
+      marginTop: 20,
+      padding: 10,
+      // backgroundColor: 'black'
     }
 });
 
 function mapStateToProps(state){
   return {
     page : state.page,
-    data : state.dataGallery
+    data : state.dataGallery,
+    isLoad: state.isLoad
   }
 }
 

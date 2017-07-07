@@ -57,7 +57,7 @@ class Gallery extends React.Component {
                style = {style.activityIndicator}
           />
         </View>
-        <MoreBtn press={() => this.loading()}/>
+        <MoreBtn />
       </ScrollView>
     );
   }
@@ -80,8 +80,9 @@ const style = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      height: 30,
-      marginBottom:5
+      height: 40,
+      marginBottom:5,
+      marginTop:5
    }
 });
 function mapStateToProps(state){
