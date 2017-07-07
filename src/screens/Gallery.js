@@ -1,27 +1,39 @@
 import React from 'react';
-import { StyleSheet, Text, ScrollView, Button, View } from 'react-native';
+import { StyleSheet, Text, ScrollView, Button, View, ActivityIndicator } from 'react-native';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import * as data from '../redux/actions/dataActions.js';
 import * as page from '../redux/actions/pageActions.js';
+import * as isLoad from '../redux/actions/loadActions.js';
 import ElementGallery from '../components/ElementGallery.js';
 import MoreBtn from '../components/MoreBtn.js';
 
 
 class Gallery extends React.Component {
   componentDidMount(){
+    this.props.dispatch(isLoad.edit(true));
     if(this.props.page == 1){
         axios.get('https://api.500px.com/v1/photos?feature=popular&consumer_key=wB4ozJxTijCwNuggJvPGtBGCRqaZVcF6jsrzUadF&page=1')
       .then((response) => {
       
           this.props.dispatch(page.edit(2));
           this.props.dispatch(data.create(response.data.photos));
+          // this.closeActivityIndicator();
+          // this.setState({ animating: false })
+          this.props.dispatch(isLoad.edit(false));
+
       })
       .catch((error) =>{
         console.log('errr');
       });
     }
   }
+  // loading(){
+  //   this.setState({ animating: true });
+  // }
+  // loaded(){
+  //   this.setState({ animating: false });
+  // }
   fullScreen(url){
     this.props.navigation.navigate('Images', { uri: url });
   }
@@ -37,8 +49,15 @@ class Gallery extends React.Component {
         <View style={style.content}>
             {this.list}
         </View>
-        <MoreBtn />
-        <Button  onPress={() => this.props.navigation.navigate('Image', { user: 'Lucy' })} title="Chat with Lucy" />
+        <View style = {this.props.isLoad ? style.container : {display:'none'}}>
+          <ActivityIndicator
+               animating = {this.props.isLoad}
+               color = '#bc2b78'
+               size = 'large'
+               style = {style.activityIndicator}
+          />
+        </View>
+        <MoreBtn press={() => this.loading()}/>
       </ScrollView>
     );
   }
@@ -49,12 +68,27 @@ const style = StyleSheet.create({
       display: 'flex',
       justifyContent: 'center',
       flexDirection: 'row'
-    }
+    },
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      // marginTop: 20
+   },
+  
+   activityIndicator: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: 30,
+      marginBottom:5
+   }
 });
 function mapStateToProps(state){
   return {
     data : state.dataGallery,
-    page : state.page
+    page : state.page,
+    isLoad : state.isLoad
   }
 };
 
