@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, Image, View } from 'react-native';
+import { StyleSheet, Text, Image, View, TouchableHighlight, TouchableOpacity } from 'react-native';
 
 
 class ElementGallery extends Component {
-
+  
     render() {
-      // console.log(this.props);
-        this.link = '/image/' + this.props.idImage;
   	return (
-    	<View style={style.element_gallery}>
+    	<View style={style.element_gallery} >
         <Text style={style.element_gallery_title}>{this.props.data.name}</Text>
-        <Image style={style.element_gallery_image} source = {{uri: this.props.data.image_url}} />
+          <TouchableOpacity onPress={this.props.press}>
+            <Image style={style.element_gallery_image} source = {{uri: this.props.data.image_url}}/>
+          </TouchableOpacity>
         <Text style={style.element_gallery_author}>{this.props.data.user.fullname}</Text>
 
       </View>
@@ -23,6 +23,10 @@ const style = StyleSheet.create({
     margin: 10,
     minHeight: 150,
     justifyContent: 'center',
+  },
+  touch:{
+    width: 100,
+    height: 100
   },
   element_gallery_title: {
     color:'gray',

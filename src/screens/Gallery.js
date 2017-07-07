@@ -13,8 +13,7 @@ class Gallery extends React.Component {
     if(this.props.page == 1){
         axios.get('https://api.500px.com/v1/photos?feature=popular&consumer_key=wB4ozJxTijCwNuggJvPGtBGCRqaZVcF6jsrzUadF&page=1')
       .then((response) => {
-          // console.log('response',response);
-          // console.log('response');
+      
           this.props.dispatch(page.edit(2));
           this.props.dispatch(data.create(response.data.photos));
       })
@@ -23,14 +22,14 @@ class Gallery extends React.Component {
       });
     }
   }
+  fullScreen(url){
+    this.props.navigation.navigate('Images', { uri: url });
+  }
 
   render() {
-    // console.log('text');
     if(this.props.data){
-       // console.log('data ', this.props.data.data.photos);
         this.list =  this.props.data.map((e, i) => {
-          // console.log(e.user);
-           return ( <ElementGallery data={e} idImage={i} key={i}/> );
+           return ( <ElementGallery data={e} press={() => this.fullScreen(e.image_url)} idImage={i} key={i}/> );
         });
     }
     return (

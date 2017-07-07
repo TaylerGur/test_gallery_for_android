@@ -1,15 +1,15 @@
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
-import Image from './screens/Image.js';
+import Images from './screens/Images.js';
 import Gallery from './screens/Gallery.js';
 
 const Main = StackNavigator({
   Home: {
     screen: Gallery,
   },
-  Image: {
+  Images: {
     path: 'image/:id',
-    screen: Image,
+    screen: Images,
   }
 });
 Gallery.navigationOptions = {

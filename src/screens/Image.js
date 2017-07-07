@@ -1,17 +1,19 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
+// import currentImage from '../components/currentImage.js';
 
-export default class Image extends React.Component {
+
+class Images extends React.Component {
   render() {
-
+    console.log(this.props.navigation.state);
     return (
-      <View style={styles.container}>
-        <Text>Its current image!</Text>
-
+      <View>
+         <Image  source={this.props.navigation.state.params} />
       </View>
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {
@@ -21,3 +23,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default  Images;

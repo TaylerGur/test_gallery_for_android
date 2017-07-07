@@ -5,12 +5,7 @@
  */
 
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import {  AppRegistry  } from 'react-native';
 import { Provider } from 'react-redux';
 import ConfigureStore from './src/redux/configureStore.js';
 import Main from './src/Main.js';
