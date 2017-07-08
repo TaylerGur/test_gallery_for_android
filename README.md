@@ -38,7 +38,7 @@ https://api.500px.com/v1/photos?feature=popular&consumer_key=wB4ozJxTijCwNuggJvP
    ![authorization png](https://github.com/TaylerGur/test_gallery_for_android/blob/master/fullScreen.png)
    >You can move forward and backward through pictures. If you want to go back to the gallery, click the button "back".
    - add more images
-   ![authorization png](https://github.com/TaylerGur/test_gallery_for_android/blob/master/moreImages.png)
+   ![authorization png](https://github.com/TaylerGur/test_gallery_for_android/blob/master/moreImage.png)
    >If you thought that the pictures are small, it does not matter, click on the "more images" button and there will be more of them;)
    
    #### Used stack of technologies ####
