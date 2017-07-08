@@ -28,12 +28,7 @@ class Gallery extends React.Component {
       });
     }
   }
-  // loading(){
-  //   this.setState({ animating: true });
-  // }
-  // loaded(){
-  //   this.setState({ animating: false });
-  // }
+
   fullScreen(url){
     this.props.navigation.navigate('Images', { uri: url });
   }
@@ -44,6 +39,7 @@ class Gallery extends React.Component {
            return ( <ElementGallery data={e} press={() => this.fullScreen(e.image_url)} idImage={i} key={i}/> );
         });
     }
+    console.log("2", this);
     return (
       <ScrollView>
         <View style={style.content}>
@@ -52,7 +48,7 @@ class Gallery extends React.Component {
         <View style = {this.props.isLoad ? style.container : {display:'none'}}>
           <ActivityIndicator
                animating = {this.props.isLoad}
-               color = '#bc2b78'
+               color = 'black'
                size = 'large'
                style = {style.activityIndicator}
           />
